@@ -1,0 +1,20 @@
+To use this overlay with layman you have to add an entry to the list of overlays.
+
+E.g. put the following XML lines into /etc/layman/extern.xml
+<?xml version="1.0" ?>
+<layman>
+	<overlay
+		type   = "git"
+		src    = "git@github.com:aniederl/overlays-misc.git"
+		status = "unofficial"
+		name   = "aniederl-misc">
+
+		<description>
+			Overlay containing miscellaneous packages not included in the portage tree
+		</description>
+	</overlay>
+</layman>
+
+Add it to the overlay lists in /etc/layman/layman.conf as shown in the example comment.
+
+layman -L && layman -a aniederl-misc

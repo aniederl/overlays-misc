@@ -7,9 +7,21 @@ inherit latex-package
 FONTS="mdbch mdput mdugm"
 SUPPLIER="public"
 
+MY_URI="http://www.ctan.org/get/fonts/mathdesign"
+
 DESCRIPTION="Free mathematical fonts that match with existing text fonts"
 HOMEPAGE="http://www.ctan.org/tex-archive/fonts/mathdesign/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="${MY_URI}/MD-adobe-utopia-doc.pdf
+         ${MY_URI}/MD-adobe-utopia-example.pdf
+         ${MY_URI}/MD-bitstream-charter-doc.pdf
+         ${MY_URI}/MD-bitstream-charter-example.pdf
+         ${MY_URI}/MD-urw-garamond-example.pdf
+         ${MY_URI}/README
+         ${MY_URI}/mathdesign-doc.pdf
+         ${MY_URI}/mdbch.zip
+         ${MY_URI}/mdcore.zip
+         ${MY_URI}/mdput.zip
+         ${MY_URI}/mdugm.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -18,6 +30,8 @@ IUSE=""
 
 DEPEND="app-arch/unzip"
 RDEPEND=""
+
+S="${WORKDIR}"
 
 tex_install() {
 	if [ -d "${1}" ] ; then
@@ -45,8 +59,11 @@ font_install() {
 }
 
 src_unpack() {
-	unpack ${A}
 	cd "${S}"
+
+	for src in ${A} ; do
+		cp "${DISTDIR}"/${src} . || die "cp failed"
+	done
 
 	for i in ${FONTS} mdcore ; do
 		unpack ./"${i}".zip

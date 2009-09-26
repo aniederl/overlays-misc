@@ -5,7 +5,7 @@ E.g. put the following XML lines into /etc/layman/extern.xml
 <layman>
 	<overlay
 		type   = "git"
-		src    = "git@github.com:aniederl/overlays-misc.git"
+		src    = "git://github.com/aniederl/overlays-misc.git"
 		status = "unofficial"
 		name   = "aniederl-misc">
 

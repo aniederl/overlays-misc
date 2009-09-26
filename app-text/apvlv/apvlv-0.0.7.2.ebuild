@@ -19,6 +19,9 @@ DEPEND=">=x11-libs/gtk+-2.6.0
 		>=virtual/poppler-glib-0.5.0[cairo]"
 RDEPEND="${DEPEND}"
 
+RESTRICT="mirror"
+
+
 src_prepare() {
 	sed -i 's:^AC_PROG_INSTALL:&\nAC_PROG_LIBTOOL:' configure.ac
 	sed -i 's:\(\$prefix\)/man:\1/share/man:'       configure.ac

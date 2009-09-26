@@ -26,6 +26,9 @@ DEPEND="app-arch/dpkg
         )"
 RDEPEND="${DEPEND}"
 
+RESTRICT="mirror"
+
+
 src_prepare() {
 	if ! use doc ; then
 		sed -i '/^all:/ s:\$(GEN_MAN1S)::' scripts/Makefile || die "sed failed"

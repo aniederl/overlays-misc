@@ -18,6 +18,8 @@ RDEPEND=">=dev-lang/python-2.5
 		 dev-python/matplotlib
 		 sound? ( media-sound/sox )"
 
+RESTRICT="mirror"
+
 src_install() {
 	emake DESTDIR="${D}" install
 }

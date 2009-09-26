@@ -25,6 +25,9 @@ DEPEND="${CDEPEND}
         )"
 RDEPEND="${CDEPEND}"
 
+RESTRICT="mirror"
+
+
 src_compile() {
 	distutils_src_compile
 

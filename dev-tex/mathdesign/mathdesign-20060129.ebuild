@@ -31,6 +31,8 @@ IUSE=""
 DEPEND="app-arch/unzip"
 RDEPEND=""
 
+RESTRICT="mirror"
+
 S="${WORKDIR}"
 
 tex_install() {

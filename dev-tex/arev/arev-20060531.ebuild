@@ -22,6 +22,8 @@ DEPEND="app-arch/unzip"
 RDEPEND="dev-tex/bera
          dev-tex/mathdesign"
 
+RESTRICT="mirror"
+
 src_install() {
 	DOCS="${S}/README ${S}/ChangeLog"
 

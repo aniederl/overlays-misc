@@ -19,6 +19,8 @@ DEPEND="${RDEPEND} app-arch/unzip"
 RDEPEND=">=dev-lang/ghc-6.6
 	net-misc/wget"
 
+RESTRICT="mirror"
+
 VIM_PLUGIN_HELPFILES="haskellmode"
 VIM_PLUGIN_MESSAGES="filetype"
 

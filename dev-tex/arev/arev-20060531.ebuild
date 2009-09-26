@@ -9,7 +9,7 @@ S="${WORKDIR}/${MY_P}"
 SUPPLIER="public"
 DESCRIPTION="LaTeX package for the Arev Sans Type1 font family"
 HOMEPAGE="http://www.ctan.org/tex-archive/fonts/arev/"
-SRC_URI="http://tug.ctan.org/fonts/${MY_P}.zip"
+SRC_URI="http://www.ctan.org/get/fonts/${MY_P}.zip"
 
 LICENSE="BitstreamVera
 		 LPPL-1.3a

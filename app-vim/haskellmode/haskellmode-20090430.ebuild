@@ -4,31 +4,50 @@
 
 VIM_PLUGIN_VIM_VERSION="7.0"
 
+EAPI="2"
+
 inherit eutils vim-plugin
 
 DESCRIPTION="vim plugin: Provides IDE-like features for Haskell development"
-HOMEPAGE="http://www.cs.kent.ac.uk/people/staff/cr3/toolbox/haskell/Vim/"
-SRC_URI="http://gentooexperimental.org/~shillelagh/${P}.zip"
+HOMEPAGE="http://projects.haskell.org/haskellmode-vim/"
+SRC_URI="http://projects.haskell.org/haskellmode-vim/vimfiles/${P}.vba"
 
-LICENSE="BSD"
+# doesn't seem to specify a license
+LICENSE=""
 SLOT=0
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="${RDEPEND} app-arch/unzip"
-RDEPEND=">=dev-lang/ghc-6.6
-	net-misc/wget"
+DEPEND="${RDEPEND}"
+RDEPEND=">=dev-lang/ghc-6.6[doc]"
 
 RESTRICT="mirror"
 
 VIM_PLUGIN_HELPFILES="haskellmode"
 VIM_PLUGIN_MESSAGES="filetype"
 
-pkg_setup() {
-	if ! built_with_use dev-lang/ghc doc ; then
-		eerror "This plugin requires the Haddock documentation for GHC to be installed."
-		die "Please re-emerge dev-lang/ghc with USE='doc'"
+vba-extract() {
+	local vimball="${1}"
+	if ! head -n 1 "${vimball}" | grep -q '^" Vimball Archiver by Charles E. Campbell, Jr., Ph.D.$' ; then
+		die "${vimball} does not seem to be a Vimball!"
 	fi
+
+	local filelines="$(grep -n '\[\[\[' "${vimball}" | cut -d : -f 1 | tr '\n' ' ')"
+	for linenr in ${filelines} ; do
+		local filename="$(sed -ne ${linenr}' s:\t\[\[\[1$::p' ${vimball})"
+		local filelength="$(sed -ne $((linenr + 1))' p' ${vimball})"
+		local filedir="$(dirname ${filename})"
+
+		[[ ! -d "${filedir}" ]] && mkdir -p "${filedir}"
+
+		sed -ne $((linenr + 2)),$((linenr + 2 + filelength - 1))' p' "${vimball}" > "${filename}"
+	done
+}
+
+S="${WORKDIR}"
+src_unpack() {
+	cd "${WORKDIR}"
+	vba-extract "${DISTDIR}"/${P}.vba
 }
 
 pkg_postinst() {

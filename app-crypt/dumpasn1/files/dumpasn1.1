@@ -1,0 +1,76 @@
+.TH dumpasn1 1 User Manuals
+.SH NAME
+dumpasn1 \- ASN.1 object dump/syntax check program
+.SH SYNOPSIS
+\fB/usr/bin/dumpasn1 [\fIoptions\fB] \fIfile\fB
+\f1
+.SH DESCRIPTION
+An ASN.1 object dump program which will dump data encoded using any of the ASN.1 encoding rules in a variety of user-specified formats.
+.SH OPTIONS
+.TP
+\fB-\f1
+Take input from stdin (some options may not work properly). 
+.TP
+\fB-\f1\fInumber\f1
+Start \fInumber\f1 bytes into the file. 
+.TP
+\fB--\f1
+End of arg list. 
+.TP
+\fB-a\f1
+Print all data in long data blocks, not just the first 128 bytes. 
+.TP
+\fB-c\f1 \fIfile\f1
+Read Object Identifier info from alternate config file (values will override equivalents in global config file) 
+.TP
+\fB-d\f1
+Print dots to show column alignment. 
+.TP
+\fB-e\f1
+Don't print encapsulated data inside OCTET/BIT STRINGs. 
+.TP
+\fB-f\f1 \fIfile\f1
+Dump object at offset -\fInumber\f1 to file (allows data to be extracted from encapsulating objects) 
+.TP
+\fB-h\f1
+Hex dump object header (tag+length) before the decoded output 
+.TP
+\fB-hh\f1
+Same as -h but display more of the object as hex data. 
+.TP
+\fB-l\f1
+Long format, display extra info about Object Identifiers. 
+.TP
+\fB-o\f1
+Don't check validity of character strings hidden in octet strings. 
+.TP
+\fB-p\f1
+Pure ASN.1 output without encoding information. 
+.TP
+\fB-r\f1
+Print bits in BIT STRING as encoded in reverse order 
+.TP
+\fB-s\f1
+Syntax check only, don't dump ASN.1 structures. 
+.TP
+\fB-t\f1
+Display text values next to hex dump of data. 
+.TP
+\fB-u\f1
+Don't format UTCTime/GeneralizedTime string data. 
+.TP
+\fB-w\f1
+Set output width (default 80). 
+.TP
+\fB-x\f1
+Display size and offset in hex not decimal. 
+.SH FILES
+\fI./dumpasn1.cfg, $HOME/.dumpasn1.cfg, /etc/dumpasn1/dumpasn1.cfg\f1: This is the configuration file, it will be searched in this order. It contains OIDs commonly used. 
+.SH AUTHORS
+qoute from Peter Gutmann:
+
+ASN.1 object dumping code, copyright Peter Gutmann <pgut001@cs.auckland.ac.nz>, based on ASN.1 dump program by David Kemp <dpkemp@missi.ncsc.mil>, with contributions from various people including Matthew Hamrick <hamrick@rsa.com>, Bruno Couillard <bcouillard@chrysalis-its.com>, Hallvard Furuseth <h.b.furuseth@usit.uio.no>, Geoff Thorpe <geoff@raas.co.nz>, David Boyce <d.boyce@isode.com>, John Hughes <john.hughes@entegrity.com>, Life is hard, and then you die <ronald@trustpoint.com>, Hans-Olof Hermansson <hans-olof.hermansson@postnet.se>, Tor Rustad <Tor.Rustad@bbs.no>, Kjetil Barvik <kjetil.barvik@bbs.no>, James Sweeny <jsweeny@us.ibm.com>, and several other people whose names I've misplaced.
+
+dumpasn1 is available at \fBhttp://www.cs.auckland.ac.nz/~pgut001/\f1
+.SH COMMENTS
+This man page was written using \fBxml2man(1)\f1 by Oliver Kurth for Debian.

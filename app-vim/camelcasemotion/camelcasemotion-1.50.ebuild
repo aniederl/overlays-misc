@@ -7,9 +7,10 @@ EAPI="2"
 VIM_PLUGIN_VIM_VERSION="7.0"
 inherit vim-plugin
 
-DESCRIPTION="vim plugin: "
+DESCRIPTION="vim plugin: Motion through CamelCaseWords and underscore_notation"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=1905"
 SRC_URI="http://vim.sourceforge.net/scripts/download_script.php?src_id=10530 -> ${P}.vba.gz"
+RESTRICT="mirror"
 
 LICENSE="vim"
 KEYWORDS="~amd64 ~x86"

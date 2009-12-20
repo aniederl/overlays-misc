@@ -25,7 +25,6 @@ RESTRICT="mirror"
 src_prepare() {
 	sed -i 's:^AC_PROG_INSTALL:&\nAC_PROG_LIBTOOL:' configure.ac
 	sed -i 's:\(\$prefix\)/man:\1/share/man:'       configure.ac
-	sed -i 's:\$(sysconfdir):$(DESTDIR)/&:'         Makefile.am
 	eautoreconf
 }
 

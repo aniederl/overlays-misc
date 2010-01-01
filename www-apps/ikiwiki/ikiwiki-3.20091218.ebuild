@@ -13,7 +13,7 @@ SRC_URI="mirror://debian/pool/main/i/ikiwiki/${P//-/_}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE=""
+IUSE="vim-syntax"
 
 DEPEND="dev-perl/Text-Markdown
         dev-perl/HTML-Parser
@@ -30,6 +30,7 @@ DEPEND="dev-perl/Text-Markdown
         dev-perl/XML-Feed
         dev-perl/File-MimeInfo
         dev-perl/Locale-gettext
+        vim-syntax? ( app-vim/markdown-syntax )
        "
 RDEPEND="${DEPEND}"
 
@@ -41,4 +42,16 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "Install failed"
+
+	if use vim-syntax ; then
+		insinto /usr/share/vim/vimfiles/syntax
+		doins "${S}"/doc/tips/vim_syntax_highlighting/${PN}.vim
+	fi
+}
+
+pkg_postinst() {
+	if use vim-syntax ; then
+		einfo "Put the following into your vimrc file to make use of the included syntax file:"
+		einfo "autocmd BufNewFile,BufRead *.mdwn set ft=ikiwiki"
+	fi
 }

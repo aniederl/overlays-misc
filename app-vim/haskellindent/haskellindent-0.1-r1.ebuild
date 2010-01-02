@@ -2,22 +2,21 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI="2"
+
 VIM_PLUGIN_VIM_VERSION="7.0"
-EAPI=2
-inherit vim-plugin
+SRC_URI="http://www.vim.org/scripts/download_script.php?src_id=7407 -> ${P}.vim"
+VCDIR="indent"
+inherit vim-plugin1
 
 DESCRIPTION="vim plugin: Indent settings and filetype detection for Haskell sources"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=1968"
-SRC_URI="http://www.vim.org/scripts/download_script.php?src_id=7407 -> haskell.vim"
-RESTRICT="mirror"
-
 LICENSE="public-domain"
 SLOT=0
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=""
-RDEPEND=""
+S="${WORKDIR}"
 
 VIM_PLUGIN_HELPTEXT=\
 "This plugin provides indent settings and filetype detection for Haskell
@@ -32,12 +31,10 @@ Example vimrc:
 \    let haskell_indent_if=2"
 VIM_PLUGIN_MESSAGES="filetype"
 
-S="${WORKDIR}"
-src_unpack() {
-	mkdir indent
-	# wget doesn't map the URI to filename correctly.
-	cp "${DISTDIR}"/haskell.vim indent/
+src_install() {
+	mv indent/haskell{indent,}.vim
+	vim-plugin_src_install
 
-	mkdir ftdetect
-	echo "au BufNewFile,BufRead *.hs set filetype=haskell" > ftdetect/haskell.vim
+	insinto /usr/share/vim/vimfiles/ftdetect
+	newins "${FILESDIR}"/${PN}-ftdetect.vim haskell.vim
 }

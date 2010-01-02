@@ -2,31 +2,26 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI="2"
+
 #VIM_PLUGIN_VIM_VERSION="7.0"
-EAPI=2
-inherit vim-plugin
+SRC_URI="http://www.vim.org/scripts/download_script.php?src_id=3666 -> ${P}.zip"
+inherit vim-plugin1
 
 DESCRIPTION="vim plugin: a C-reference manual especially designed for Vim"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=614"
-SRC_URI="http://www.vim.org/scripts/download_script.php?src_id=3666 -> ${P}.zip"
 LICENSE="GPL-2"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-RESTRICT="mirror"
-
+S="${WORKDIR}/${PN}"
 
 VIM_PLUGIN_HELPFILES="crefvimdoc"
 VIM_PLUGIN_HELPTEXT=""
 VIM_PLUGIN_HELPURI=""
 VIM_PLUGIN_MESSAGES=""
 
-S="${WORKDIR}/${PN}"
-
-src_unpack() {
-	unpack ${A}
-	cd ${S}
-
+src_prepare() {
 	# mapping conflicts with vcscommand
 	sed -i 's/<Leader>cc/<Leader>cb/' plugin/${PN}.vim doc/${PN}.txt
 }

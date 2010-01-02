@@ -25,6 +25,6 @@ VIM_PLUGIN_MESSAGES=""
 
 S="${WORKDIR}"
 src_unpack() {
-	unzip ${A}
 	cd "${S}"
+	unzip "${DISTDIR}"/${A}
 }

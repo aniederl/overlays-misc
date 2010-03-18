@@ -16,7 +16,7 @@ KEYWORDS="amd64 x86"
 IUSE="+doc +examples"
 
 CDEPEND="dev-util/devscripts
-         dev-util/git
+         dev-vcs/git
          dev-python/python-dateutil"
 DEPEND="${CDEPEND}
         doc? (

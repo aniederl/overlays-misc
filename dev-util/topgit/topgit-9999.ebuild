@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+bash-completion"
 
-DEPEND="dev-util/git"
+DEPEND="dev-vcs/git"
 RDEPEND="${DEPEND}"
 
 src_compile() {

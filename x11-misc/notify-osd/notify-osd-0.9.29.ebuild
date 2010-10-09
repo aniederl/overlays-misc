@@ -5,7 +5,7 @@
 EAPI=2
 GCONF_DEBUG="no"
 
-inherit gnome2 versionator
+inherit autotools gnome2 versionator
 
 MY_PV="lucid/ubuntu-10.04-beta-2"
 #MY_PV=$(get_version_component_range 1-2)/${PV}
@@ -31,3 +31,10 @@ DEPEND="${RDEPEND}
 	!x11-misc/xfce4-notifyd"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
+
+src_prepare() {
+	sed -i '/^SUBDIRS/ s:icons::' "${S}/data/Makefile.am"
+	eautoreconf
+
+	gnome2_src_prepare
+}

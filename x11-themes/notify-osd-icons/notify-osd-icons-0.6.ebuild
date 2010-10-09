@@ -4,8 +4,6 @@
 
 EAPI="2"
 
-inherit gnome2-utils
-
 DESCRIPTION="Icons for Notify-OSD in Ubuntu style "
 HOMEPAGE="https://launchpad.net/notify-osd"
 SRC_URI="mirror://ubuntu/pool/main/n/${PN}/${PN}_${PV}.tar.gz"
@@ -28,10 +26,6 @@ DEPEND="${RDEPEND}
 RESTRICT="binchecks mirror strip"
 
 src_install() {
-	emake install DESTDIR="${D}"  || die "Install failed"
+	emake install DESTDIR="${D}" TARGET_DIR=/usr/share/notify-osd/icons/hicolor  || die "Install failed"
 	dodoc debian/{copyright,changelog} AUTHORS || die "Install doc failed"
 }
-
-pkg_preinst() { gnome2_icon_savelist; }
-pkg_postinst() { gnome2_icon_cache_update; }
-pkg_postrm() { gnome2_icon_cache_update; }

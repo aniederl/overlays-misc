@@ -25,6 +25,7 @@ DEPEND="${RDEPEND}
 
 RESTRICT="binchecks mirror strip"
 
+S="${WORKDIR}/${PN}"
 src_install() {
 	emake install DESTDIR="${D}" TARGET_DIR=/usr/share/notify-osd/icons/hicolor  || die "Install failed"
 	dodoc debian/{copyright,changelog} AUTHORS || die "Install doc failed"

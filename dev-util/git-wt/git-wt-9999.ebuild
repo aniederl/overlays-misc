@@ -2,8 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI="3"
+
+USE_RUBY="ruby18 ruby19"
+
 EGIT_REPO_URI="git://gitorious.org/willgit/mainline.git"
-inherit ruby git
+inherit ruby-ng git
 SRC_URI=""
 
 

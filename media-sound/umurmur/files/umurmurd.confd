@@ -1,0 +1,9 @@
+# Path to configuration file
+UMURMURD_CONF="/etc/umurmur.conf"
+
+# Path to PID file
+UMURMURD_PID="/var/run/umurmurd.pid"
+
+# Additional flags to be passed to umurmurd
+UMURMURD_OPTS="-r"
+

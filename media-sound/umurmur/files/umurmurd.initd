@@ -1,0 +1,23 @@
+#!/sbin/runscript
+# Copyright 1999-2011 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+depend() {
+	need net
+	use logger
+}
+
+start() {
+	ebegin "Starting umurmurd"
+	start-stop-daemon --start --exec /usr/bin/umurmurd --pidfile "${UMURMURD_PID}" -- \
+		-c "${UMURMURD_CONF}" -p "${UMURMURD_PID}" ${UMURMURD_OPTS}
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping umurmurd"
+	start-stop-daemon --stop --pidfile "${UMURMURD_PID}"
+	eend $?
+}
+

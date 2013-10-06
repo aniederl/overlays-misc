@@ -2,8 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EGIT_REPO_URI="git://repo.or.cz/topgit.git"
-inherit git bash-completion
+EAPI="4"
+
+EGIT_REPO_URI="https://github.com/greenrd/topgit.git"
+inherit git-2 bash-completion
 SRC_URI=""
 
 

@@ -7,7 +7,7 @@ EAPI="3"
 USE_RUBY="ruby18 ruby19"
 
 EGIT_REPO_URI="git://gitorious.org/willgit/mainline.git"
-inherit ruby-ng git
+inherit ruby-ng git-2
 SRC_URI=""
 
 
